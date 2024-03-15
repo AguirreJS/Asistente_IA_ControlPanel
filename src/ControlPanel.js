@@ -14,6 +14,40 @@ const Control = () => {
 
 /////////////info
 
+const Limite = (
+  <PopoverContent class="w-1/2">
+    <div class="px-4 py-4">
+      <div class="text-sm font-bold">¿Por qué es importante establecer un límite de gasto en cada chat para evitar abusos de uso?</div>
+      <div class="text-xs">
+        Es crucial establecer un límite de gasto en cada chat al utilizar la API de OpenAI para evitar abusos de uso y garantizar la equidad en el acceso a los recursos. Este límite de gasto asegura que un solo chat no pueda agotar rápidamente los créditos disponibles al realizar demasiadas solicitudes en una misma conversación. Además, al establecer este límite, se promueve un uso responsable de los recursos de la API, evitando que un usuario monopolice la capacidad de procesamiento y afecte negativamente a otros usuarios que también necesitan acceder a los servicios de OpenAI. En resumen, el establecimiento de un límite de gasto por chat es fundamental para mantener un equilibrio justo en el uso de la API y garantizar que todos los usuarios puedan beneficiarse de manera adecuada de los servicios ofrecidos por OpenAI.
+      </div>
+    </div>
+  </PopoverContent>
+);
+
+const TokenAsistente = (
+  <PopoverContent class="w-1/2">
+    <div class="px-4 py-4">
+      <div class="text-sm font-bold">¿Por qué es importante el token de identificación para el asistente en OpenAI usando la API?</div>
+      <div class="text-xs">
+        El token de identificación es crucial al utilizar la API de OpenAI, ya que actúa como una clave única para cada asistente o aplicación que accede a los servicios de inteligencia artificial. Este token permite a OpenAI rastrear y controlar el uso de su API, garantizando la seguridad y la integridad de los servicios proporcionados. Además, el token de identificación permite a OpenAI implementar políticas de uso justo y gestionar la carga de trabajo en sus servidores, asegurando un rendimiento óptimo para todos los usuarios. En resumen, el token de identificación es esencial para autorizar y controlar el acceso a la poderosa funcionalidad de la API de OpenAI, garantizando una experiencia de usuario segura y eficiente.
+      </div>
+    </div>
+  </PopoverContent>
+);
+
+
+const TokenIA = (
+  <PopoverContent class="w-1/2">
+    <div class="px-4 py-4">
+      <div class="text-sm font-bold">¿Por qué es importante el token de IA para usar la API de OpenAI?</div>
+      <div class="text-xs">
+        El token de IA es fundamental al utilizar la API de OpenAI, ya que sirve como una forma de identificación única para cada usuario o aplicación que accede a los servicios de inteligencia artificial. Este token permite a OpenAI rastrear y controlar el uso de su API, garantizando la seguridad y la integridad de los servicios proporcionados. Además, el token de IA permite a OpenAI implementar políticas de uso justo y gestionar la carga de trabajo en sus servidores, lo que asegura un rendimiento óptimo para todos los usuarios. En resumen, el token de IA es esencial para autorizar y controlar el acceso a la potente funcionalidad de la API de OpenAI, garantizando una experiencia de usuario segura y eficiente.
+      </div>
+    </div>
+  </PopoverContent>
+);
+
 
 const IdentificacionTelefono = (
   <PopoverContent class="w-1/2">
@@ -254,6 +288,7 @@ const handleOpen6 = (size6) => {
 };
 
 
+
 const { isOpen: isOpen7, onOpen: onOpen7, onClose: onClose7 } = useDisclosure();
 
 const [size7, setSize7] = React.useState('md');
@@ -264,7 +299,32 @@ const handleOpen7 = (size7) => {
 };
 
 
+const { isOpen: isOpen8, onOpen: onOpen8, onClose: onClose8 } = useDisclosure();
 
+const [size8, setSize8] = React.useState('md');
+
+const handleOpen8 = (size8) => {
+  setSize8(size8);
+  onOpen8(); // Aquí se cambió de onOpen7 a onOpen8
+};
+
+const { isOpen: isOpen9, onOpen: onOpen9, onClose: onClose9 } = useDisclosure();
+
+const [size9, setSize9] = React.useState('md');
+
+const handleOpen9 = (size9) => {
+  setSize9(size9);
+  onOpen9(); // Aquí se cambió de onOpen8 a onOpen9
+};
+
+const { isOpen: isOpen10, onOpen: onOpen10, onClose: onClose10 } = useDisclosure(); // Cambiado isOpen9 a isOpen10
+
+const [size10, setSize10] = React.useState('md'); // Cambiado size9 a size10
+
+const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
+  setSize10(size10);
+  onOpen10(); // Cambiado de onOpen9 a onOpen10
+};
 
 
 
@@ -674,6 +734,7 @@ Mas info Sobre Webhook
 
 {/* Inicio _:_______________________________________*/}
 
+
 <Button key={"2xl"} onPress={() => handleOpen7("2xl")}>  Tiempo de espera en cada mensaje</Button>
 
 <Modal 
@@ -686,6 +747,7 @@ Mas info Sobre Webhook
             <>
               <ModalHeader className="flex flex-col gap-1">Tiempo de espera en cada mensaje </ModalHeader>
               <ModalBody>
+
 
  
   <h1>Tiempo de espera en cada mensaje expresado en segundos </h1>
@@ -700,7 +762,6 @@ Mas info Sobre Webhook
 
 
 
-
   </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose7}>
@@ -725,23 +786,36 @@ Mas info Sobre Webhook
 {/* Inicio _:_______________________________________*/}
 
 
-<Button key={"2xl"} onPress={() => handleOpen7("2xl")}>  Tiempo de espera en cada mensaje</Button>
+<Button key={"2xl"} onPress={() => handleOpen8("2xl")}>  Token de Open IA</Button>
 
 <Modal 
         size={"2xl"} 
-        isOpen={isOpen7} 
-        onClose={onClose7} 
+        isOpen={isOpen8} 
+        onClose={onClose8} 
       >
         <ModalContent>
-          {(onClose7) => (
+          {(onClose8) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Tiempo de espera en cada mensaje </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Token de Open IA</ModalHeader>
               <ModalBody>
 
 
 
 
-  <h1> Token de Open IA</h1>
+
+
+              <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
+    <PopoverTrigger>
+      <Button color="primary" variant="flat" className="capitalize">
+Mas info sobre Token Open IA
+      </Button>
+    </PopoverTrigger>
+    {
+      TokenIA
+    }
+  </Popover>
+
+
   <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
     <Input
       label="Email"
@@ -756,10 +830,10 @@ Mas info Sobre Webhook
 
   </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose7}>
+                <Button color="danger" variant="light" onPress={onClose8}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose7}>
+                <Button color="primary" onPress={onClose8}>
                   Action
                 </Button>
               </ModalFooter>
@@ -769,42 +843,112 @@ Mas info Sobre Webhook
       </Modal>
 
 
+
   
 {/* Fin ___________________________________________ */}
 
 {/* Inicio _:_______________________________________*/}
 
+<Button key={"2xl"} onPress={() => handleOpen9("2xl")}>Token Asistente Open IA</Button>
 
+<Modal 
+  size={"2xl"} 
+  isOpen={isOpen9} 
+  onClose={onClose9} 
+>
+  <ModalContent>
+    {(onClose9) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1">Token Asistente Open IA</ModalHeader>
+        <ModalBody>
+         
 
-  <h1> Token Asistente Open IA</h1>
-  <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
-    <Input
-      label="Email"
-      placeholder="Enter your email"
-      value={value}
-      onValueChange={setValue}
-    />
-  </div>
+          <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
+            <PopoverTrigger>
+              <Button color="primary" variant="flat" className="capitalize">
+                Más info  Token Asistente Open IA
+              </Button>
+            </PopoverTrigger>
+            {TokenAsistente}
+          </Popover>
+
+          <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
+            <Input
+              label="Email"
+              placeholder="Enter your email"
+              value={value}
+              onValueChange={setValue}
+            />
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" variant="light" onPress={onClose9}>
+            Close
+          </Button>
+          <Button color="primary" onPress={onClose9}>
+            Action
+          </Button>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
+
 
 
   {/* Fin ___________________________________________ */}
 
 {/* Inicio _:_______________________________________*/}
 
+<Button key={"2xl"} onPress={() => handleOpen10("2xl")}>Token de Open IA</Button>
 
-  <h1> Limite de consumo en UDS</h1>
-  <Input
-          type="number"
-          placeholder="0.00"
-          labelPlacement="inside"
-          className="flex w-1/5 flex-wrap md:flex-nowrap gap-4"
-          endContent={
-            <div className="flex w-1/5 flex-wrap md:flex-nowrap gap-4">
-            <span className="flex w-1/5 flex-wrap md:flex-nowrap gap-4">$</span>
+<Modal 
+  size={"2xl"} 
+  isOpen={isOpen10} 
+  onClose={onClose10} 
+>
+  <ModalContent>
+    {(onClose10) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1">Limite de Consumo</ModalHeader>
+        <ModalBody>
+          <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
+            <PopoverTrigger>
+              <Button color="primary" variant="flat" className="capitalize">
+              Limite de Consumo
+              </Button>
+            </PopoverTrigger>
+            {Limite}
+          </Popover>
+
+          <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
+          <Input
+  type="number"
+  placeholder="0.00"
+  labelPlacement="inside"
+  className="flex w-1/5 flex-wrap md:flex-nowrap gap-4"
+  endContent={
+    <div className="flex w-1/5 flex-wrap md:flex-nowrap gap-4">
+      <span className="flex w-1/5 flex-wrap md:flex-nowrap gap-4">$</span>
+    </div>
+  }
+/>
           </div>
-          
-          }
-        />
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" variant="light" onPress={onClose10}>
+            Close
+          </Button>
+          <Button color="primary" onPress={onClose10}>
+            Action
+          </Button>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
+
+
         
 
 
