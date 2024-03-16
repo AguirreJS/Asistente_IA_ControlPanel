@@ -12,8 +12,8 @@ root.render(
     <NextUIProvider>
       <TutorialModule></TutorialModule>
       <Menu/>
-      <div className="bg-black flex items-center justify-center pt-40 px-40 ">
-      <div className="bg-black border p-20 w-full max-w-4xl rounded-md">
+      <div className="bg-whait flex items-center justify-center pt-40 px-40 ">
+      <div className="bg-gray-200 border p-20 w-full max-w-4xl rounded-md">
     <Control/>
   </div>
 </div>

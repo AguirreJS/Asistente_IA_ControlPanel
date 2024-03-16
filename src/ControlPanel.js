@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter,  useDisclosure ,Autocomplete, Checkbox ,Snippet, Input ,AutocompleteItem , Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
+import React, { useRef ,  useState } from 'react';
+import { Chip , Card, CardBody , Table, TableHeader, TableColumn, TableBody, TableRow, TableCell , Modal, ModalContent, ModalHeader, ModalBody, ModalFooter,  useDisclosure ,Autocomplete, Checkbox ,Snippet, Input ,AutocompleteItem , Popover, PopoverTrigger, PopoverContent, Button} from "@nextui-org/react";
 import {EyeFilledIcon} from "./scripts-next/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./scripts-next/EyeSlashFilledIcon";
 import copyIcon from './icon/copiar.png';
@@ -11,6 +11,34 @@ const Control = () => {
   let Dominio = "https://www.asistente.intervia.com.ar:44300/webhook/"
   let DominioActual = "https://www.asistente.intervia.com.ar"
   let Tutorial = "https://www.youtube.com/watch?v=YWU0FoDkF-Q"
+
+ {/*____________ Funciones recopiladoras ___________________________________________ */}
+
+  const [selectedOption, setSelectedOption] = useState(null); // Estado local para almacenar la opción seleccionada
+
+  const handleChange = (selected) => {
+    setSelectedOption(selected); // Actualiza el estado con la opción seleccionada
+  };
+
+
+  const [selectedOption2, setSelectedOption2] = useState(null);
+  const [inputbewhook2, setInputbewhook] = useState(""); // Estado local para el valor del input
+
+  const handleChange2 = (selected2) => {
+    setSelectedOption2(selected2);
+  };
+
+
+
+function procesadorSeleccion(content , type ){
+
+  console.log(content + type)
+
+}
+
+
+{/* Fin _:_______________________________________*/}
+
 
 /////////////info
 
@@ -331,68 +359,260 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
 {/* _________Renderizado  ____________*/}
   return (
 <div className="flex flex-col justify-center items-center gap-4">
-  
-  <h3 className="text-2xl text-white bg-blue-500 rounded-lg p-4">Centro de Autenticación</h3>
+
+<Card className='w-full text-center'>
+      <CardBody className='w-full text-center'>
+        <p className='w-full text-center'>Centro de Autenticación</p>
+      </CardBody>
+    </Card>
+   
+    <Table>
+  <TableHeader>
+    <TableColumn className="text-center w-1/3">PLATAFORMA</TableColumn>
+    <TableColumn className="text-center w-1/3">TIPO</TableColumn>
+    <TableColumn className="text-center w-1/3">STATUS</TableColumn>
+  </TableHeader>
+  <TableBody>
+    <TableRow key="1">
+      <TableCell className="text-center">Asistente</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen("2xl")} fullWidth>
+          Seleccionar Tipo de cuenta
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="2">
+      <TableCell className="text-center">Whatsapp</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen2("2xl")} fullWidth>
+          Webhook
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="3">
+      <TableCell className="text-center">Whatsapp</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen3("2xl")} fullWidth>
+          Token de Verificacion
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="4">
+      <TableCell className="text-center">Whatsapp</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen4("2xl")} fullWidth>
+          Tocken permanente de whatsapp
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="5">
+      <TableCell className="text-center">Whatsapp</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen5("2xl")} fullWidth>
+          Politicas de Privacidad
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="6">
+      <TableCell className="text-center">Whatsapp</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen6("2xl")} fullWidth>
+          ID numero telefoico
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="7">
+      <TableCell className="text-center">Asistente</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen7("2xl")} fullWidth>
+          Tiempo de espera en cada mensaje
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="8">
+      <TableCell className="text-center">Open IA</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen8("2xl")} fullWidth>
+          Token de Open IA
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="9">
+      <TableCell className="text-center">Open IA</TableCell>
+      <TableCell className="text-center">
+        <Button key={"2xl"} color="primary" onPress={() => handleOpen9("2xl")} fullWidth>
+          Token Asistente Open IA
+        </Button>
+      </TableCell>
+      <TableCell className="text-center">
+        <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip>
+      </TableCell>
+    </TableRow>
+    <TableRow key="10">
+      <TableCell className="text-center">Asistente</TableCell>
+      <TableCell className="text-center"><Button key={"2xl"} color="primary" onPress={() => handleOpen10("2xl")} fullWidth>Limite de Consumo</Button></TableCell>
+      <TableCell className="text-center"> <Chip
+          variant="shadow"
+          classNames={{
+            base: "bg-gradient-to-br from-indigo-500 to-pink-500 border-small border-white/50 shadow-pink-500/30",
+            content: "drop-shadow shadow-black text-white",
+          }}
+        >
+          New
+        </Chip> </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+
 
 {/* Inicio _:_______________________________________*/}
 
-          <Button key={"2xl"} onPress={() => handleOpen("2xl")}>Seleccionar Tipo de cuienta</Button>
-
-      <Modal 
-        size={"2xl"} 
-        isOpen={isOpen} 
-        onClose={onClose} 
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Seleccionar tipo de cuenta. </ModalHeader>
-              <ModalBody>
-        
-        
-  <div className="flex items-center space-x-2"> 
-        <Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="foreground">
-          <PopoverTrigger>
-            <Button color="primary" variant="flat" className="capitalize">
-  Tipo de Cuetna
-            </Button>
-          </PopoverTrigger>
-          {TiposdeCuentas}
-        </Popover>
-
-  <div className="w-full max-w-xs"> {/* Ajusta según sea necesario para el bloque Autocomplete */}
-    <Autocomplete 
-      onSelectionChange={handleSelectionChange}
-      label="Seleccione Tipo de cuenta" 
-      className="w-full"
+<Modal 
+      size={"2xl"} 
+      isOpen={isOpen} 
+      onClose={onClose} 
     >
-      {asistente.map((asistente) => (
-        <AutocompleteItem key={asistente.value} value={asistente.value}>
-          {asistente.label}
-        </AutocompleteItem>
-      ))}
-    </Autocomplete>
-  </div>
-
-  </div>
-
-
-
-
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1 text-center">Seleccionar tipo de cuenta. </ModalHeader>
+            <ModalBody>
+              <div className="flex items-center space-x-2"> 
+                <Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
+                  <PopoverTrigger>
+                    <Button color="primary" variant="flat" className="capitalize">
+                      Mas Info
+                    </Button>
+                  </PopoverTrigger>
+                  {TiposdeCuentas}
+                </Popover>
+                <div className="w-full max-w-xs"> {/* Ajusta según sea necesario para el bloque Autocomplete */}
+                  <Autocomplete 
+                    onSelectionChange={handleChange}
+                    label="Seleccione Tipo de cuenta" 
+                    className="w-full"
+                  >
+                    {asistente.map((asistente) => (
+                      <AutocompleteItem key={asistente.value} value={asistente.value}>
+                        {asistente.label}
+                      </AutocompleteItem>
+                    ))}
+                  </Autocomplete>
+                </div>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" variant="light" onPress={onClose}>
+                Close
+              </Button>
+              <Button color="primary" onPress={() => {
+                procesadorSeleccion(selectedOption , 0); // Imprime la opción seleccionada en la consola
+                onClose(); // Cierra el modal
+              }}>
+                Listo
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
 
 
 
@@ -403,64 +623,44 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
 
 
 {/* Inicio _:_______________________________________*/}
-
-
-<Button key={"2xl"} onPress={() => handleOpen2("2xl")}>Webhook</Button>
-
-
 <Modal 
-        size={"2xl"} 
-        isOpen={isOpen2} 
-        onClose={onClose2} 
-      >
+      size={"2xl"} 
+      isOpen={isOpen2} 
+      onClose={onClose2} 
+    >
+      <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
         <ModalContent>
           {(onClose2) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Webhook. </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Webhook.</ModalHeader>
               <ModalBody>
-        
-
-
-  <Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
-          <PopoverTrigger>
-            <Button color="primary" variant="flat" className="capitalize">
-Mas info Sobre Webhook
-            </Button>
-          </PopoverTrigger>
-          {Webhook}
-        </Popover>
-
-  <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
-    <Input
-      label="Webhook"
-      placeholder="Link para insertar en WebHook"
-      value={inputbewhook}
-      onValueChange={seinputbewhook}
-    />  
-   
-    </div>
-   <div className="flex items-center space-x-2"> {/* Añade espacio entre elementos */}
-
-
-        <Snippet >{Dominio}{inputbewhook}</Snippet>
-  
-</div>
-
-
-
-  </ModalBody>
+                <Input
+                  label="Webhook"
+                  placeholder="Link para insertar en WebHook"
+                  value={inputbewhook2}
+                  onValueChange={(value) => setInputbewhook(value)} // Actualiza el estado del input
+                />  
+                <Snippet>{Dominio}{inputbewhook}</Snippet>
+                <Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
+                  <PopoverTrigger>
+                    <Button color="primary" variant="flat" className="capitalize">Mas info</Button>
+                  </PopoverTrigger>
+                  {Webhook}
+                </Popover>
+              </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose2}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose2}>
-                  Action
-                </Button>
+                <Button color="danger" variant="light" onPress={onClose2}>Close</Button>
+                <Button color="primary" onPress={() => {
+                  procesadorSeleccion(inputbewhook, 1);
+                  handleChange2(inputbewhook); // Llama a handleChange2 con el valor actual del input
+                  onClose2();
+                }}>Listo</Button>
               </ModalFooter>
             </>
           )}
         </ModalContent>
-      </Modal>
+      </div>
+    </Modal>
 
 
   
@@ -470,7 +670,7 @@ Mas info Sobre Webhook
 
 {/* Inicio _:_______________________________________*/}
 
-<Button key={"2xl"} onPress={() => handleOpen3("2xl")}>Token de Verificacion</Button>
+
 
 
 
@@ -526,7 +726,7 @@ Mas info Sobre Webhook
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose3}>
-                  Action
+                  Listo
                 </Button>
               </ModalFooter>
             </>
@@ -542,7 +742,7 @@ Mas info Sobre Webhook
 {/* Inicio _:_______________________________________*/}
 
 
-<Button key={"2xl"} onPress={() => handleOpen4("2xl")}> Tocken permanente de whatsap</Button>
+
 
 
 
@@ -587,7 +787,7 @@ Mas info Sobre Webhook
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose4}>
-                  Action
+                  Listo
                 </Button>
               </ModalFooter>
             </>
@@ -601,7 +801,7 @@ Mas info Sobre Webhook
 
 {/* Inicio _:_______________________________________*/}
 
-<Button key={"2xl"} onPress={() => handleOpen5("2xl")}> Politicas de Privacidad </Button>
+
 
 
 
@@ -660,7 +860,7 @@ Mas info Sobre Webhook
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose5}>
-                  Action
+                  Listo
                 </Button>
               </ModalFooter>
             </>
@@ -673,8 +873,6 @@ Mas info Sobre Webhook
 
 {/* Inicio _:_______________________________________*/}
 
-
-<Button key={"2xl"} onPress={() => handleOpen6("2xl")}>  ID numero telefoico </Button>
 
 
 
@@ -720,7 +918,7 @@ Mas info Sobre Webhook
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose6}>
-                  Action
+                  Listo
                 </Button>
               </ModalFooter>
             </>
@@ -735,7 +933,6 @@ Mas info Sobre Webhook
 {/* Inicio _:_______________________________________*/}
 
 
-<Button key={"2xl"} onPress={() => handleOpen7("2xl")}>  Tiempo de espera en cada mensaje</Button>
 
 <Modal 
         size={"2xl"} 
@@ -768,7 +965,7 @@ Mas info Sobre Webhook
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose7}>
-                  Action
+                  Listo
                 </Button>
               </ModalFooter>
             </>
@@ -786,7 +983,7 @@ Mas info Sobre Webhook
 {/* Inicio _:_______________________________________*/}
 
 
-<Button key={"2xl"} onPress={() => handleOpen8("2xl")}>  Token de Open IA</Button>
+
 
 <Modal 
         size={"2xl"} 
@@ -834,7 +1031,7 @@ Mas info sobre Token Open IA
                   Close
                 </Button>
                 <Button color="primary" onPress={onClose8}>
-                  Action
+                  Listo
                 </Button>
               </ModalFooter>
             </>
@@ -849,7 +1046,7 @@ Mas info sobre Token Open IA
 
 {/* Inicio _:_______________________________________*/}
 
-<Button key={"2xl"} onPress={() => handleOpen9("2xl")}>Token Asistente Open IA</Button>
+
 
 <Modal 
   size={"2xl"} 
@@ -886,7 +1083,7 @@ Mas info sobre Token Open IA
             Close
           </Button>
           <Button color="primary" onPress={onClose9}>
-            Action
+            Listo
           </Button>
         </ModalFooter>
       </>
@@ -900,7 +1097,7 @@ Mas info sobre Token Open IA
 
 {/* Inicio _:_______________________________________*/}
 
-<Button key={"2xl"} onPress={() => handleOpen10("2xl")}>Token de Open IA</Button>
+
 
 <Modal 
   size={"2xl"} 
@@ -940,7 +1137,7 @@ Mas info sobre Token Open IA
             Close
           </Button>
           <Button color="primary" onPress={onClose10}>
-            Action
+            Listo
           </Button>
         </ModalFooter>
       </>
