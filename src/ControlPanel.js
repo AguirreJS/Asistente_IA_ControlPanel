@@ -6,6 +6,16 @@ import copyIcon from './icon/copiar.png';
 
 
 
+const generarStringAlfanumerico = (longitud) => {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let resultado = '';
+  for (let i = 0; i < longitud; i++) {
+    resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+  }
+  return resultado;
+};
+
+
 const Control = () => {
 
   let Dominio = "https://www.asistente.intervia.com.ar:44300/webhook/"
@@ -21,18 +31,27 @@ const Control = () => {
   };
 
 
-  const [selectedOption2, setSelectedOption2] = useState(null);
-  const [inputbewhook2, setInputbewhook] = useState(""); // Estado local para el valor del input
+  const [tkPermanente2, setTkPermanente2] = useState("");
 
-  const handleChange2 = (selected2) => {
-    setSelectedOption2(selected2);
-  };
+  const [tokenPermanente2, setTokenPermanente2] = useState("");
+
+  const [isSelected2, setIsSelected2] = useState(false);
+
+  const [Idphone2, setIdphone2] = useState("");
+
+  const [value2, setValue2] = useState("");
 
 
 
+
+
+
+
+  
 function procesadorSeleccion(content , type ){
 
-  console.log(content + type)
+  console.log(content)
+  console.log(type)
 
 }
 
@@ -624,44 +643,49 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
 
 {/* Inicio _:_______________________________________*/}
 <Modal 
-      size={"2xl"} 
-      isOpen={isOpen2} 
-      onClose={onClose2} 
-    >
-      <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-        <ModalContent>
-          {(onClose2) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Webhook.</ModalHeader>
-              <ModalBody>
-                <Input
-                  label="Webhook"
-                  placeholder="Link para insertar en WebHook"
-                  value={inputbewhook2}
-                  onValueChange={(value) => setInputbewhook(value)} // Actualiza el estado del input
-                />  
-                <Snippet>{Dominio}{inputbewhook}</Snippet>
-                <Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
-                  <PopoverTrigger>
-                    <Button color="primary" variant="flat" className="capitalize">Mas info</Button>
-                  </PopoverTrigger>
-                  {Webhook}
-                </Popover>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose2}>Close</Button>
-                <Button color="primary" onPress={() => {
-                  procesadorSeleccion(inputbewhook, 1);
-                  handleChange2(inputbewhook); // Llama a handleChange2 con el valor actual del input
-                  onClose2();
-                }}>Listo</Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </div>
-    </Modal>
+  size={"2xl"} 
+  isOpen={isOpen2} 
+  onClose={onClose2} 
+>
+  <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+    <ModalContent>
+      {(onClose2) => (
+        <>
+          <ModalHeader className="flex flex-col gap-1">Webhook.</ModalHeader>
+          <ModalBody>
+            <Input
+             isDisabled
+              label="Webhook"
+              placeholder="Link para insertar en WebHook"
+              value={inputbewhook}
+              onValueChange={seinputbewhook}
+            />
+          <Button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-2 px-4 rounded hover:from-blue-600 hover:to-purple-700" onPress={() => {
+  // Llama a la función y actualiza el estado del input con el string generado
+  const stringAleatorio = generarStringAlfanumerico(25); // Ahora con longitud de 25 caracteres
+  seinputbewhook(stringAleatorio);
+}}>Crear un WebHook</Button>
 
+            <Snippet>{Dominio}{inputbewhook}</Snippet>
+            <Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
+              <PopoverTrigger>
+                <Button color="primary" variant="flat" className="capitalize">Mas info</Button>
+              </PopoverTrigger>
+              {Webhook}
+            </Popover>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="light" onPress={onClose2}>Close</Button>
+            <Button color="primary" onPress={() => {
+              procesadorSeleccion(inputbewhook, 1); // Aquí se pasa el valor 1
+              onClose2(); // Cierra el modal
+            }}>Listo</Button>
+          </ModalFooter>
+        </>
+      )}
+    </ModalContent>
+  </div>
+</Modal>
 
   
 
@@ -687,8 +711,6 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
               <ModalBody>
 
 
-  <div className="flex items-center space-x-0 flex-wrap"> {/* Elimina espacio entre elementos y permite ajuste */}
-  <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
 
     <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
       <PopoverTrigger>
@@ -703,6 +725,8 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
       label="Piense una contraseña única"
       variant="bordered"
       placeholder="Sin espacios"
+      value={tkPermanente2}
+      onValueChange={setTkPermanente2}
       endContent={
         <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
           {isVisible ? (
@@ -713,21 +737,26 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
         </button>
       }
       type={isVisible ? "text" : "password"}
-      className="max-w-xs"
     />
 
-  </div>
-</div>
+
 
 
 </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose3}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose3}>
-                  Listo
-                </Button>
+              <Button color="danger" variant="light" onPress={onClose3}>
+                Close
+              </Button>
+              <Button
+              color="primary"
+              onPress={() => {
+               procesadorSeleccion(tkPermanente2, 2);
+              onClose3(); // Cierra el modal
+  }}
+>
+  Listo
+</Button>
+
               </ModalFooter>
             </>
           )}
@@ -743,188 +772,55 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
 
 
 
-
-
-
-
 <Modal 
-        size={"2xl"} 
-        isOpen={isOpen4} 
-        onClose={onClose4} 
-      >
-        <ModalContent>
-          {(onClose4) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Tocken permanente de whatsapp </ModalHeader>
-              <ModalBody>
+  size={"2xl"} 
+  isOpen={isOpen4} 
+  onClose={onClose4}
+>
+  <ModalContent>
+    {(onClose4) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1">Token Permanente de WhatsApp</ModalHeader>
+        <ModalBody>
 
+          <Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
+            <PopoverTrigger>
+              <Button color="primary" variant="flat" className="capitalize">
+                Más info Sobre Token Permanente de WhatsApp
+              </Button>
+            </PopoverTrigger>
+            {Permanente}
+          </Popover>
 
+          <div className="flex flex-col items-center gap-2 w-full md:w-auto">
+            <Input
+              label="Ingrese Aquí El Token Permanente"
+              placeholder="Suele tener esta forma = EAASbMC5ZC4ngBOzmYZBvdvSGFET5bFrKZBG1ZBgSYnfbNxqTHZCSm14SyeGVtatf7eDDX7g9isqCEwJHLoDCViB65IdMB5dYsgfZCIinOPIZB8ppnNZBQS59XsIR4I1U"
+              value={tokenPermanente2}
+              onValueChange={setTokenPermanente2}
+            />
+          </div>
 
-<Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
-          <PopoverTrigger>
-            <Button color="primary" variant="flat" className="capitalize">
-           Mas info Sobre Tocken permanente de whatsapp
-            </Button>
-          </PopoverTrigger>
-          {Permanente}
-        </Popover>
+        </ModalBody>
+        <ModalFooter>
+        <Button color="danger" variant="light" onPress={onClose4}>
+                Close
+              </Button>
+        <Button
+  color="primary"
+  onPress={() => {
+    procesadorSeleccion(tokenPermanente2, 3);
+    onClose4(); // Cierra el modal.
+  }}
+>
+  Listo
+</Button>
 
-        <div className="flex flex-col items-center gap-2 w-full md:w-auto">
-  <Input
-    className="w-[450px] flex-wrap" // Esto establecerá el ancho del input a 400px
-    label="Ingrese Aqui El Token Permanente"
-    placeholder="Suele tener esta forma = EAASbMC5ZC4ngBOzmYZBvdvSGFET5bFrKZBG1ZBgSYnfbNxqTHZCSm14SyeGVtatf7eDDX7g9isqCEwJHLoDCViB65IdMB5dYsgfZCIinOPIZB8ppnNZBQS59XsIR4I1U"
-    value={tkPermanente}
-    onValueChange={settkPermanente}
-  />
-</div>
-
-
-
-</ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose4}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose4}>
-                  Listo
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
-
-
-{/* Fin ___________________________________________ */}
-
-{/* Inicio _:_______________________________________*/}
-
-
-
-
-
-
-<Modal 
-        size={"2xl"} 
-        isOpen={isOpen5} 
-        onClose={onClose5} 
-      >
-        <ModalContent>
-          {(onClose5) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Tocken permanente de whatsapp </ModalHeader>
-              <ModalBody>
-
-
-
-<Popover class="text-xs w-1/2" key={ "top end"} placement={"top end"} color="primary">
-          <PopoverTrigger>
-            <Button color="primary" variant="flat" className="capitalize">  
-          Mas Info sobre Politicas del Sitio
-            </Button>
-          </PopoverTrigger>
-          {TerminosYCondiciones}
-        </Popover>
-
-
-        <div className="flex flex-col gap-2">
-      <Checkbox isSelected={isSelected} onValueChange={setIsSelected}>
-        Acepto los temrinos y condiciones.
-      </Checkbox>
-    </div>
-
-
-
-
-<div className="flex items-center space-x-2">
-  <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
-    <PopoverTrigger>
-      <Button color="default" variant="flat" className="capitalize">
-        <p ref={textoParaCopiarRef2} className="text-default-500 text-small">{DominioActual}/Policy</p>
-      </Button>
-    </PopoverTrigger>
-    {linkWebhook}
-  </Popover>
-
-
-  <button onClick={copiarAlPortapapeles2} className="py-1 px-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center text-xs">
-    <img src={copyIcon} alt="Copiar" className="w-4 h-4" /> {/* Ajusta el tamaño de la imagen si es necesario */}
-  </button>
-</div>
-
-</ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose5}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose5}>
-                  Listo
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
-
-{/* Fin ___________________________________________ */}
-
-{/* Inicio _:_______________________________________*/}
-
-
-
-
-
-<Modal 
-        size={"2xl"} 
-        isOpen={isOpen6} 
-        onClose={onClose6} 
-      >
-        <ModalContent>
-          {(onClose6) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">  ID numero telefoico </ModalHeader>
-              <ModalBody>
-
-
-
-  <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
-    <PopoverTrigger>
-      <Button color="primary" variant="flat" className="capitalize">
-      ID numero telefoico
-      </Button>
-    </PopoverTrigger>
-    {IdentificacionTelefono}
-  </Popover>
-
-
-  <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
-  <Input
-    label="ID del Teléfono"
-    placeholder="Ingrese el ID del teléfono"
-    value={Idphone}
-    onValueChange={setIdphone}
-  />
-</div>
-
-
-
-
-</ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose6}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose6}>
-                  Listo
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
 
 
 
@@ -935,44 +831,157 @@ const handleOpen10 = (size10) => { // Cambiado handleOpen9 a handleOpen10
 
 
 <Modal 
-        size={"2xl"} 
-        isOpen={isOpen7} 
-        onClose={onClose7} 
-      >
-        <ModalContent>
-          {(onClose7) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Tiempo de espera en cada mensaje </ModalHeader>
-              <ModalBody>
+  size={"2xl"} 
+  isOpen={isOpen5} 
+  onClose={onClose5}
+>
+  <ModalContent>
+    {(onClose5) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1">Políticas del Sitio</ModalHeader>
+        <ModalBody>
+          <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
+            <PopoverTrigger>
+              <Button color="primary" variant="flat" className="capitalize">  
+                Más Info sobre Políticas del Sitio
+              </Button>
+            </PopoverTrigger>
+            {TerminosYCondiciones}
+          </Popover>
+
+          <div className="flex flex-col gap-2">
+            <Checkbox isSelected={isSelected2} onValueChange={setIsSelected2}>
+              Acepto los términos y condiciones.
+            </Checkbox>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
+              <PopoverTrigger>
+                <Button color="default" variant="flat" className="capitalize">
+                  <p ref={textoParaCopiarRef2} className="text-default-500 text-small">{DominioActual}/Policy</p>
+                </Button>
+              </PopoverTrigger>
+              {linkWebhook}
+            </Popover>
+
+            <button onClick={copiarAlPortapapeles2} className="py-1 px-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 flex items-center text-xs">
+              <img src={copyIcon} alt="Copiar" className="w-4 h-4" />
+            </button>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" variant="light" onPress={onClose5}>
+            Close
+          </Button>
+          <Button color="primary" onPress={() => {
+            procesadorSeleccion(isSelected2, 4); // Usamos isSelected2 aquí
+            onClose5(); // Cierra el modal
+          }}>
+            Listo
+          </Button>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
 
 
+
+{/* Fin ___________________________________________ */}
+
+{/* Inicio _:_______________________________________*/}
+
+
+
+
+<Modal 
+  size={"2xl"} 
+  isOpen={isOpen6} 
+  onClose={onClose6}
+>
+  <ModalContent>
+    {(onClose6) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1">ID Número Telefónico</ModalHeader>
+        <ModalBody>
+
+          <Popover class="text-xs w-1/2" key={"top end"} placement={"top end"} color="primary">
+            <PopoverTrigger>
+              <Button color="primary" variant="flat" className="capitalize">
+                ID Número Telefónico
+              </Button>
+            </PopoverTrigger>
+            {IdentificacionTelefono}
+          </Popover>
+
+          <Input
+            label="ID del Teléfono"
+            placeholder="Ingrese el ID del teléfono"
+            value={Idphone2}
+            onChange={(e) => setIdphone2(e.target.value)} // Ajuste aquí para el manejo correcto del cambio.
+          />
+
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" variant="light" onPress={onClose6}>
+            Close
+          </Button>
+          <Button color="primary" onPress={() => {
+            procesadorSeleccion(Idphone2, 5); // Usamos isSelected2 aquí
+            onClose6(); // Cierra el modal.
+          }}>
+            Listo
+          </Button>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
+
+
+{/* Fin ___________________________________________ */}
+
+{/* Inicio _:_______________________________________*/}
+
+
+<Modal 
+  size={"2xl"} 
+  isOpen={isOpen7} 
+  onClose={onClose7}
+>
+  <ModalContent>
+    {(onClose7) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1">Tiempo de espera en cada mensaje</ModalHeader>
+        <ModalBody>
  
-  <h1>Tiempo de espera en cada mensaje expresado en segundos </h1>
-  <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
-    <Input
-      label="Tiempo"
-      placeholder="El tiempo debe estar expresado en segundos"
-      value={value}
-      onValueChange={setValue}
-    />
-  </div>
+          <h1>Tiempo de espera en cada mensaje expresado en segundos</h1>
+          <div className="flex flex-col items-center gap-2 w-full md:w-auto max-w-[240px]">
+            <Input
+              label="Tiempo"
+              placeholder="El tiempo debe estar expresado en segundos"
+              value={value2}
+              onChange={(e) => setValue2(e.target.value)} // Ajuste aquí para el manejo correcto del cambio.
+            />
+          </div>
 
-
-
-  </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose7}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose7}>
-                  Listo
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" variant="light" onPress={onClose7}>
+            Close
+          </Button>
+          <Button color="primary" onPress={() => {
+            procesadorSeleccion(value2, 6); // Usamos isSelected2 aquí
+            onClose7(); // Cierra el modal.
+          }}>
+            Listo
+          </Button>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
 
 
 
